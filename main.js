@@ -1,44 +1,49 @@
-// main.js
-
+import { Player } from "./player.js";
 import { Dungeon } from "./dungeon.js";
-import { Battle } from "./battle.js";
 import { easyRooms } from "./rooms.js";
 
-function startGame() {
-    const player = {
-        name: "Adventurer",
-        currentHP: 20,
-        armorClass: 15,
-        weapon: { name: "Sword", damageDice: 8 },
-        rank: 1
-    };
+const player = new Player("Adventurer");
 
-    const dungeon = new Dungeon(player.rank);
-    dungeon.generateDungeon();
+// DOM Elements
+const statsElement = document.getElementById("stats");
+const roomDetailsElement = document.getElementById("room-details");
+const startDungeonButton = document.getElementById("start-dungeon");
+const viewInventoryButton = document.getElementById("view-inventory");
 
-    console.log("Dungeon Generated!");
-    dungeon.rooms.forEach((room, index) => {
-        console.log(`Entering Room ${index + 1}: ${room.name}`);
-        console.log(room.description);
-
-        // Handle Room Challenge
-        if (room.challenge.includes("combat")) {
-            console.log("A fight begins!");
-            const goblin = {
-                name: "Goblin",
-                currentHP: 10,
-                armorClass: 12,
-                weapon: { name: "Dagger", damageDice: 6 }
-            };
-            const battle = new Battle(player, goblin);
-            console.log(battle.startBattle());
-        } else {
-            console.log("Solving the challenge...");
-            console.log(`Challenge: ${room.challenge}`);
-        }
-
-        console.log(`Loot: ${room.loot}`);
-    });
+// Update Player Stats Display
+function updateStats() {
+    statsElement.innerHTML = `
+        Name: ${player.name} <br>
+        HP: ${player.currentHP}/${player.maxHP} <br>
+        Armor Class: ${player.armorClass} <br>
+        Weapon: ${player.weapon.name} (d${player.weapon.damageDice}) <br>
+        Rank: ${player.rank} <br>
+        Gold: ${player.gold} <br>
+    `;
 }
 
-startGame();
+// Display Room Details
+function displayRoom(room) {
+    roomDetailsElement.innerHTML = `
+        <h3>${room.name}</h3>
+        <p>${room.description}</p>
+        <p><strong>Challenge:</strong> ${room.challenge}</p>
+    `;
+}
+
+// Start Dungeon Event
+startDungeonButton.addEventListener("click", () => {
+    const dungeon = new Dungeon(player.rank);
+    dungeon.generateDungeon();
+    const firstRoom = dungeon.rooms[0];
+    displayRoom(firstRoom);
+    updateStats();
+});
+
+// View Inventory Event
+viewInventoryButton.addEventListener("click", () => {
+    alert(`Inventory: ${player.inventory.join(", ") || "Empty"}`);
+});
+
+// Initialize Game
+updateStats();
