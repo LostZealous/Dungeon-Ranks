@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dungeon Ranks</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dungeon Adventure</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Dungeon Ranks</h1>
+        <h1>Dungeon Adventure</h1>
     </header>
     <main>
+        <!-- Tavern Section -->
         <section id="tavern">
-            <h2>Tavern</h2>
+            <h2>Welcome to the Tavern!</h2>
+            <p>What would you like to do?</p>
             <button id="view-stats">View Stats</button>
             <button id="view-inventory">View Inventory</button>
             <button id="rest">Rest</button>
-            <button id="quest-board">Go to Quest Board</button>
-            <button id="talk-to-bartender">Talk to the Bartender</button>
+            <button id="quest-board-button">Go to Quest Board</button>
+            <button id="bartender-button">Talk to the Bartender</button>
         </section>
 
-        <section id="bartender" class="hidden">
-            <h2>Bartender</h2>
+        <!-- Bartender Section -->
+        <section id="bartender-section" class="hidden">
+            <h2>The Bartender</h2>
             <p id="bartender-dialogue">"Welcome, adventurer! What can I do for you?"</p>
             <div id="bartender-options">
                 <button id="ask-about-dungeons">Ask about the dungeons</button>
@@ -30,14 +33,16 @@
             </div>
         </section>
 
+        <!-- Quest Board Section -->
         <section id="quest-board-section" class="hidden">
             <h2>Quest Board</h2>
-            <p>Select a dungeon to explore:</p>
-            <button id="start-dungeon">Start Dungeon</button>
+            <p>Choose your adventure!</p>
+            <button id="start-dungeon">Start a Dungeon</button>
             <button id="back-to-tavern">Back to Tavern</button>
         </section>
 
-        <section id="dungeon" class="hidden">
+        <!-- Dungeon Section -->
+        <section id="dungeon-section" class="hidden">
             <h2>Dungeon</h2>
             <div id="room-details"></div>
             <div id="actions">
@@ -49,6 +54,9 @@
             <div id="battle-log"></div>
         </section>
     </main>
+    <footer>
+        <p>&copy; 2024 Dungeon Adventure</p>
+    </footer>
     <script src="player.js" type="module"></script>
     <script src="rooms.js" type="module"></script>
     <script src="dungeon.js" type="module"></script>
