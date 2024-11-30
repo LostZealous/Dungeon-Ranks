@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
             <button id="start-dungeon-button">Start a Dungeon</button>
         `;
 
-        // Start Dungeon Button
         document.getElementById("start-dungeon-button").addEventListener("click", () => {
             const playerRank = currentPlayer.rank || 1;
             currentDungeon = generateDungeon(playerRank);
@@ -36,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
 
+        // Bartender options
         document.getElementById("ask-for-advice").addEventListener("click", () => {
             interactionArea.querySelector("#bartender-dialogue").innerHTML = `
                 <p>"Stay sharp and always carry a healing potion. Those dungeons can be tricky!"</p>
@@ -62,6 +62,50 @@ document.addEventListener("DOMContentLoaded", () => {
             <button id="quest-board-button">Quest Board</button>
             <button id="bartender-button">Talk to Bartender</button>
         `;
+        document.getElementById("quest-board-button").addEventListener("click", () => {
+            interactionArea.innerHTML = `
+                <h2>Quest Board</h2>
+                <p>The quest board is filled with notices and maps, each promising rewards for daring adventurers.</p>
+                <button id="start-dungeon-button">Start a Dungeon</button>
+            `;
+            document.getElementById("start-dungeon-button").addEventListener("click", () => {
+                const playerRank = currentPlayer.rank || 1;
+                currentDungeon = generateDungeon(playerRank);
+                console.log("Dungeon Generated:", currentDungeon);
+                enterDungeon(currentDungeon);
+            });
+        });
+
+        document.getElementById("bartender-button").addEventListener("click", () => {
+            interactionArea.innerHTML = `
+                <h2>The Bartender</h2>
+                <p>The bartender looks up from polishing a glass and greets you with a warm smile.</p>
+                <div id="bartender-dialogue">
+                    <p>"Welcome, adventurer! Care for a drink, or perhaps some advice on your next journey?"</p>
+                    <button id="ask-for-advice">Ask for Advice</button>
+                    <button id="order-drink">Order a Drink</button>
+                    <button id="leave-bartender">Leave the Bartender</button>
+                </div>
+            `;
+
+            document.getElementById("ask-for-advice").addEventListener("click", () => {
+                interactionArea.querySelector("#bartender-dialogue").innerHTML = `
+                    <p>"Stay sharp and always carry a healing potion. Those dungeons can be tricky!"</p>
+                    <button id="back-to-tavern">Back to Tavern</button>
+                `;
+                document.getElementById("back-to-tavern").addEventListener("click", resetTavern);
+            });
+
+            document.getElementById("order-drink").addEventListener("click", () => {
+                interactionArea.querySelector("#bartender-dialogue").innerHTML = `
+                    <p>The bartender pours you a refreshing drink. You feel rejuvenated!</p>
+                    <button id="back-to-tavern">Back to Tavern</button>
+                `;
+                document.getElementById("back-to-tavern").addEventListener("click", resetTavern);
+            });
+
+            document.getElementById("leave-bartender").addEventListener("click", resetTavern);
+        });
     }
 
     // Enter Dungeon
