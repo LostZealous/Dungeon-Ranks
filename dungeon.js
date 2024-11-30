@@ -21,6 +21,10 @@ export class Dungeon {
         const bossChance = this.getBossChanceForRank();
         if (Math.random() * 100 < bossChance) {
             this.rooms[this.rooms.length - 1].challenge = "boss";
+            this.rooms[this.rooms.length - 1].challengeDetails = 
+                "A powerful boss guards the final room. Prepare for a fierce battle!";
+            this.rooms[this.rooms.length - 1].loot = 
+                "The boss's treasure hoard contains valuable items and gold.";
         }
     }
 
@@ -86,4 +90,11 @@ export class Dungeon {
     randomInRange(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
+}
+
+// Function to generate a dungeon dynamically
+export function generateDungeon(rank) {
+    const dungeon = new Dungeon(rank);
+    dungeon.generateDungeon();
+    return dungeon;
 }
