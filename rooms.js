@@ -1,6 +1,6 @@
 // rooms.js
 
-const easyRooms = [
+export const easyRooms = [
     {
         id: 1,
         name: "Entrance Hall",
@@ -178,5 +178,3 @@ const easyRooms = [
     }
 
 ];
-
-export { easyRooms };
