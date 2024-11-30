@@ -1,36 +1,54 @@
-class Player {
+export class Player {
     constructor(name) {
         this.name = name;
-        this.currentHP = 20;
-        this.maxHP = 20;
-        this.armorClass = 15;
-        this.weapon = { name: "Basic Sword", damageDice: 8 }; // d8 weapon
         this.rank = 1;
+        this.maxHP = 20;
+        this.currentHP = 20;
+        this.armorClass = 12;
         this.gold = 0;
         this.inventory = [];
+        this.stats = {
+            strength: 10,
+            dexterity: 10,
+            constitution: 10,
+            intelligence: 10,
+            wisdom: 10,
+            charisma: 10,
+        };
     }
 
     levelUp() {
         this.rank++;
         this.maxHP += 5;
-        this.currentHP = this.maxHP; // Heal upon leveling up
-        console.log(`Congratulations, ${this.name}! You are now Rank ${this.rank}!`);
+        this.currentHP = this.maxHP;
+        this.armorClass += 1;
+        console.log(`${this.name} has leveled up to Rank ${this.rank}!`);
+    }
+
+    takeDamage(amount) {
+        this.currentHP -= amount;
+        if (this.currentHP <= 0) {
+            console.log(`${this.name} has fallen!`);
+            this.currentHP = 0;
+        }
+    }
+
+    heal(amount) {
+        this.currentHP = Math.min(this.maxHP, this.currentHP + amount);
+        console.log(`${this.name} heals for ${amount} HP.`);
     }
 
     addToInventory(item) {
         this.inventory.push(item);
-        console.log(`${item} has been added to your inventory.`);
+        console.log(`${item} added to inventory.`);
     }
 
-    showStats() {
-        console.log(`Name: ${this.name}`);
-        console.log(`HP: ${this.currentHP}/${this.maxHP}`);
-        console.log(`Armor Class: ${this.armorClass}`);
-        console.log(`Weapon: ${this.weapon.name} (d${this.weapon.damageDice})`);
-        console.log(`Rank: ${this.rank}`);
-        console.log(`Gold: ${this.gold}`);
-        console.log("Inventory:", this.inventory);
+    spendGold(amount) {
+        if (this.gold >= amount) {
+            this.gold -= amount;
+            console.log(`${amount} gold spent.`);
+        } else {
+            console.log("Not enough gold!");
+        }
     }
 }
-
-export { Player };
