@@ -1,8 +1,3 @@
-// rooms.js
-
-
-
-
 export const easyRooms = [
     {
         id: 1,
@@ -11,7 +6,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Loose stones scatter the floor. Stepping on the wrong one triggers falling rocks. A careful eye and steady footwork are needed to navigate.",
         loot: "A small healing potion lies under a collapsed column and becomes reachable after the rocks are cleared.",
-        dc: 10
+        dc: 10,
     },
     {
         id: 2,
@@ -20,7 +15,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Pressure plates hidden beneath the floor release a volley of darts when triggered. You must carefully disarm the trap or avoid the plates entirely.",
         loot: "Once the traps are disabled, you can safely collect a handful of coins and a small gem.",
-        dc: 12
+        dc: 12,
     },
     {
         id: 3,
@@ -29,7 +24,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Match glowing symbols on the wall to those on the floor levers. A wrong match triggers a harmless but disorienting flash of light.",
         loot: "Solving the puzzle reveals a hidden compartment containing a small, enchanted key.",
-        dc: 8
+        dc: 8,
     },
     {
         id: 4,
@@ -38,7 +33,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "A locked cell holds valuable items, but the rusted lock is fragile. You can either pick the lock or smash it with brute force.",
         loot: "The unlocked cell contains a basic weapon, such as a dagger, leaning against the wall.",
-        dc: 10
+        dc: 10,
     },
     {
         id: 5,
@@ -55,7 +50,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Tripwires connected to crude alarms and traps are strung across the room. Disarm or carefully avoid them to proceed.",
         loot: "Once the tripwires are neutralized, you find a stash of coins and a potion in one of the crates.",
-        dc: 11
+        dc: 11,
     },
     {
         id: 7,
@@ -72,7 +67,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "The lab's volatile chemicals are dangerously unstable. Avoid or neutralize bubbling traps to prevent explosions.",
         loot: "After securing the lab, you collect a minor healing potion from the alchemist's table.",
-        dc: 9
+        dc: 9,
     },
     {
         id: 9,
@@ -97,7 +92,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Malfunctioning devices spring to life, sparking with danger. Avoid the hazards or disable the rogue machines.",
         loot: "Once the devices are silenced, you find a small gadget useful for crafting.",
-        dc: 13
+        dc: 13,
     },
     {
         id: 12,
@@ -114,7 +109,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Protective magical wards in the grove block intruders. Solve a simple nature riddle to dispel the wards.",
         loot: "Once the wards are lifted, you gather some potent healing herbs.",
-        dc: 10
+        dc: 10,
     },
     {
         id: 14,
@@ -123,7 +118,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Find and activate a hidden mechanism to reveal the door. Failure may trigger a harmless gust of wind as a deterrent.",
         loot: "Once the hidden door is opened, you discover a small stash of gold.",
-        dc: 12
+        dc: 12,
     },
     {
         id: 15,
@@ -140,7 +135,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Some gears activate simple traps when disturbed. Disable the mechanisms or carefully navigate through them.",
         loot: "Once safe, you collect a piece of clockwork material useful for crafting.",
-        dc: 11
+        dc: 11,
     },
     {
         id: 17,
@@ -149,7 +144,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "The echoes mask the sound of hidden traps. Carefully proceed to avoid triggering them.",
         loot: "When you reach the end, you find a charm that improves stealth.",
-        dc: 9
+        dc: 9,
     },
     {
         id: 18,
@@ -158,7 +153,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Touching the wrong book triggers a minor magical pulse, causing disorientation. Find the correct book to advance.",
         loot: "The correct book reveals a scroll with a basic spell.",
-        dc: 10
+        dc: 10,
     },
     {
         id: 19,
@@ -167,7 +162,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Navigate through the shifting lights without getting disoriented. Careful timing and observation are key.",
         loot: "Once you cross the room, you collect a glowing gemstone.",
-        dc: 11
+        dc: 11,
     },
     {
         id: 20,
@@ -176,7 +171,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "The whispers grow louder and more confusing. Focus your mind to overcome the distraction.",
         loot: "After silencing the whispers, you gain a talisman of mental clarity.",
-        dc: 10
+        dc: 10,
     },
     {
         id: 21,
@@ -185,7 +180,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Some lanterns are rigged with simple traps that release smoke or falling shards. Carefully inspect them to proceed.",
         loot: "After disarming the traps, you acquire a magical lantern that dispels darkness.",
-        dc: 12
+        dc: 12,
     },
     {
         id: 22,
@@ -202,7 +197,7 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Stepping too close triggers a simple but harmless magical ward that flashes brightly. Dispel the ward to proceed.",
         loot: "Once the altar is safe, you find an ancient relic inscribed with runes, useful for trading or study.",
-        dc: 13
+        dc: 13,
     },
     {
         id: 24,
@@ -219,10 +214,10 @@ export const easyRooms = [
         challenge: "skill check",
         challengeDetails: "Opening the crates or chests triggers simple magical wards, releasing a harmless puff of light. Deactivate or avoid them.",
         loot: "Once the wards are neutralized, you recover a small stash of coins and a basic potion.",
-        dc: 12
-    }
-];
+        dc: 12,
+    },
 
+];
 
 export const mediumRooms = [];
 export const hardRooms = [];
