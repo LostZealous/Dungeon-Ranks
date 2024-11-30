@@ -1,76 +1,89 @@
-// dungeon.js
+import { easyRooms, mediumRooms, hardRooms, extremeRooms } from "./rooms.js";
 
-import { easyRooms } from "./rooms.js";
-
-class Dungeon {
-    constructor(playerRank) {
-        this.playerRank = playerRank;
+export class Dungeon {
+    constructor(rank) {
+        this.rank = rank;
         this.rooms = [];
-        this.bossChance = this.getBossChance(playerRank);
     }
 
-    getBossChance(rank) {
-        // Define boss chances by rank
-        const rankBossChances = {
-            1: 100,
-            2: 90,
-            3: 80,
-            4: 70,
-            5: 60,
-            6: 50,
-            7: 40,
-            8: 30,
-            9: 20,
-            10: 10
-        };
-        return rankBossChances[rank] || 0;
-    }
-
+    // Generate dungeon based on player rank
     generateDungeon() {
-        const minRooms = this.playerRank < 5 ? 3 : 5;
-        const maxRooms = this.playerRank < 7 ? 7 : 15;
-        const roomCount = Math.floor(Math.random() * (maxRooms - minRooms + 1)) + minRooms;
+        let roomCount = this.getRoomCountForRank();
+        let roomsPool = this.getRoomsPoolForRank();
 
-        // Populate regular rooms
-        for (let i = 0; i < roomCount - 1; i++) {
-            const randomRoom = easyRooms[Math.floor(Math.random() * easyRooms.length)];
-            this.rooms.push(randomRoom);
+        for (let i = 0; i < roomCount; i++) {
+            const randomIndex = Math.floor(Math.random() * roomsPool.length);
+            const room = { ...roomsPool[randomIndex] }; // Clone room to avoid reference issues
+            this.rooms.push(room);
         }
 
-        // Determine if the last room will be a boss room
-        if (Math.random() * 100 < this.bossChance) {
-            this.rooms.push({
-                id: "BOSS",
-                name: "Boss Room",
-                description: "A massive chamber where a fearsome enemy awaits. The air feels heavy with menace.",
-                challenge: "Defeat the dungeon's boss to claim victory!",
-                loot: "High-value treasure, a powerful weapon, and rare items."
-            });
-        } else {
-            this.rooms.push({
-                id: "TREASURE",
-                name: "Treasure Room",
-                description: "A glittering chamber filled with gold, gems, and valuable artifacts.",
-                challenge: "No challenges, just rewards.",
-                loot: "A significant amount of gold, high-value items, and unique trinkets."
-            });
+        // Decide if the last room has a boss
+        const bossChance = this.getBossChanceForRank();
+        if (Math.random() * 100 < bossChance) {
+            this.rooms[this.rooms.length - 1].challenge = "boss";
         }
     }
 
-    printDungeon() {
-        console.log("Generated Dungeon Rooms:");
-        this.rooms.forEach((room, index) => {
-            console.log(`Room ${index + 1}: ${room.name}`);
-            console.log(`  Description: ${room.description}`);
-            console.log(`  Challenge: ${room.challenge}`);
-            console.log(`  Loot: ${room.loot}`);
-        });
+    // Determine room count based on rank
+    getRoomCountForRank() {
+        switch (this.rank) {
+            case 1:
+            case 2:
+            case 3:
+                return this.randomInRange(3, 7);
+            case 4:
+            case 5:
+            case 6:
+                return this.randomInRange(5, 10);
+            case 7:
+            case 8:
+            case 9:
+                return this.randomInRange(8, 15);
+            case 10:
+                return this.randomInRange(10, 17);
+            default:
+                return 3;
+        }
+    }
+
+    // Determine boss chance based on rank
+    getBossChanceForRank() {
+        switch (this.rank) {
+            case 1:
+                return 100;
+            case 2:
+                return 90;
+            case 3:
+                return 80;
+            case 4:
+                return 70;
+            case 5:
+                return 60;
+            case 6:
+                return 50;
+            case 7:
+                return 40;
+            case 8:
+                return 30;
+            case 9:
+                return 20;
+            case 10:
+                return 10;
+            default:
+                return 0;
+        }
+    }
+
+    // Get appropriate rooms pool based on rank
+    getRoomsPoolForRank() {
+        if (this.rank <= 3) return easyRooms;
+        if (this.rank <= 6) return mediumRooms;
+        if (this.rank <= 9) return hardRooms;
+        return extremeRooms;
+    }
+
+    // Helper to generate a random number within a range
+    randomInRange(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
-
-// Example Usage
-const dungeon = new Dungeon(1); // Rank 1 Player
-dungeon.generateDungeon();
-dungeon.printDungeon();
-
-export { Dungeon };
