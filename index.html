@@ -1,12 +1,43 @@
 <!DOCTYPE html>
-
-<section id="actions">
-    <h2>Actions</h2>
-    <button id="start-dungeon">Start Dungeon</button>
-    <button id="view-inventory">View Inventory</button>
-    <button id="roll-die">Roll Die</button>
-</section>
-<section id="battle-log">
-    <h2>Battle Log</h2>
-    <div id="battle-log"></div>
-</section>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon Ranks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Tavern</h1>
+    </header>
+    <main>
+        <section id="tavern">
+            <h2>Tavern</h2>
+            <button id="view-stats">View Stats</button>
+            <button id="view-inventory">View Inventory</button>
+            <button id="rest">Rest</button>
+            <button id="quest-board">Go to Quest Board</button>
+        </section>
+        <section id="quest-board-section" class="hidden">
+            <h2>Quest Board</h2>
+            <p>Select a dungeon to explore:</p>
+            <button id="start-dungeon">Start Dungeon</button>
+            <button id="back-to-tavern">Back to Tavern</button>
+        </section>
+        <section id="dungeon" class="hidden">
+            <h2>Dungeon</h2>
+            <div id="room-details"></div>
+            <div id="actions">
+                <button id="roll-die" class="hidden">Roll Die</button>
+                <button id="back-to-quest-board" class="hidden">Back to Quest Board</button>
+            </div>
+            <div id="battle-log"></div>
+        </section>
+    </main>
+    <script src="player.js" type="module"></script>
+    <script src="rooms.js" type="module"></script>
+    <script src="dungeon.js" type="module"></script>
+    <script src="battle.js" type="module"></script>
+    <script src="main.js" type="module"></script>
+</body>
+</html>
