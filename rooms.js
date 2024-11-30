@@ -141,9 +141,6 @@ const easyRooms = [
         challenge: "The whispers grow louder and more confusing. Focus your mind to overcome the distraction.",
         loot: "After silencing the whispers, you gain a talisman of mental clarity."
     },
-    const easyRooms = [
-    // Previous 20 rooms here...
-
     {
         id: 21,
         name: "The Lantern Room",
