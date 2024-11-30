@@ -9,6 +9,7 @@ const player = new Player("Adventurer");
 const tavernSection = document.getElementById("tavern");
 const questBoardSection = document.getElementById("quest-board-section");
 const dungeonSection = document.getElementById("dungeon");
+const bartenderSection = document.getElementById("bartender");
 const roomDetailsElement = document.getElementById("room-details");
 const battleLogElement = document.getElementById("battle-log");
 const rollDieButton = document.getElementById("roll-die");
@@ -21,6 +22,18 @@ const questBoardButton = document.getElementById("quest-board");
 const startDungeonButton = document.getElementById("start-dungeon");
 const backToTavernButton = document.getElementById("back-to-tavern");
 const backToQuestBoardButton = document.getElementById("back-to-quest-board");
+const talkToBartenderButton = document.getElementById("talk-to-bartender");
+const askAboutDungeonsButton = document.getElementById("ask-about-dungeons");
+const askAboutTownButton = document.getElementById("ask-about-town");
+const sayGoodbyeButton = document.getElementById("say-goodbye");
+
+// Bartender Dialogue Responses
+const bartenderResponses = {
+    initial: `"Welcome, adventurer! What can I do for you?"`,
+    dungeons: `"The dungeons are dangerous, but the rewards are worth it. Start with the smaller ones to build your strength."`,
+    town: `"This town thrives on adventurers like you. The shopkeepers will buy your loot, and the inn has the best food around!"`,
+    goodbye: `"Good luck out there, adventurer! Come back in one piece!"`
+};
 
 let currentBattle = null;
 
@@ -35,6 +48,30 @@ function updateStats() {
         Gold: ${player.gold}
     `);
 }
+
+// Show Bartender Section
+talkToBartenderButton.addEventListener("click", () => {
+    tavernSection.classList.add("hidden");
+    bartenderSection.classList.remove("hidden");
+    bartenderDialogue.textContent = bartenderResponses.initial;
+});
+
+// Bartender Options
+askAboutDungeonsButton.addEventListener("click", () => {
+    bartenderDialogue.textContent = bartenderResponses.dungeons;
+});
+
+askAboutTownButton.addEventListener("click", () => {
+    bartenderDialogue.textContent = bartenderResponses.town;
+});
+
+sayGoodbyeButton.addEventListener("click", () => {
+    bartenderDialogue.textContent = bartenderResponses.goodbye;
+    setTimeout(() => {
+        bartenderSection.classList.add("hidden");
+        tavernSection.classList.remove("hidden");
+    }, 2000);
+});
 
 // Navigate to Quest Board
 questBoardButton.addEventListener("click", () => {
