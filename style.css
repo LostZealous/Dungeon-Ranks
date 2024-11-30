@@ -41,3 +41,21 @@ button:hover {
 h1, h2 {
     color: #ffdd57;
 }
+
+#bartender {
+    background-color: #2c2c2c;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+}
+
+#bartender-dialogue {
+    font-style: italic;
+    margin-bottom: 1em;
+}
+
+#bartender-options button {
+    margin: 0.2em;
+}
