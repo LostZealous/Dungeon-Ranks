@@ -8,10 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to the Tavern</h1>
+        <h1>Dungeon Ranks</h1>
     </header>
     <main>
-        <!-- Tavern Section -->
         <section id="tavern">
             <h2>Tavern</h2>
             <button id="view-stats">View Stats</button>
@@ -21,7 +20,6 @@
             <button id="talk-to-bartender">Talk to the Bartender</button>
         </section>
 
-        <!-- Bartender Section -->
         <section id="bartender" class="hidden">
             <h2>Bartender</h2>
             <p id="bartender-dialogue">"Welcome, adventurer! What can I do for you?"</p>
@@ -32,7 +30,6 @@
             </div>
         </section>
 
-        <!-- Quest Board Section -->
         <section id="quest-board-section" class="hidden">
             <h2>Quest Board</h2>
             <p>Select a dungeon to explore:</p>
@@ -40,13 +37,14 @@
             <button id="back-to-tavern">Back to Tavern</button>
         </section>
 
-        <!-- Dungeon Section -->
         <section id="dungeon" class="hidden">
             <h2>Dungeon</h2>
             <div id="room-details"></div>
             <div id="actions">
+                <button id="look-around" class="hidden">Look Around</button>
+                <button id="attempt-skill-check" class="hidden">Attempt Skill Check</button>
+                <button id="proceed-next-room" class="hidden">Proceed to Next Room</button>
                 <button id="roll-die" class="hidden">Roll Die</button>
-                <button id="back-to-quest-board" class="hidden">Back to Quest Board</button>
             </div>
             <div id="battle-log"></div>
         </section>
