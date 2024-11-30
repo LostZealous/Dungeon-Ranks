@@ -1,7 +1,10 @@
-import { generateDungeon } from './dungeon.js'; // Ensure dungeon generation logic is imported
+import { Player } from "./player.js";
+import { generateDungeon } from "./dungeon.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const interactionArea = document.getElementById("interaction-area");
+    const currentPlayer = new Player("Hero");
+    let currentDungeon = null;
 
     // Quest Board Button
     document.getElementById("quest-board-button").addEventListener("click", () => {
@@ -11,9 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
             <button id="start-dungeon-button">Start a Dungeon</button>
         `;
 
-        // Add event listener for starting a dungeon
+        // Start Dungeon Button
         document.getElementById("start-dungeon-button").addEventListener("click", () => {
-            startDungeon();
+            const playerRank = currentPlayer.rank || 1;
+            currentDungeon = generateDungeon(playerRank);
+            console.log("Dungeon Generated:", currentDungeon);
+            enterDungeon(currentDungeon);
         });
     });
 
@@ -30,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
 
-        // Bartender interaction handlers
         document.getElementById("ask-for-advice").addEventListener("click", () => {
             interactionArea.querySelector("#bartender-dialogue").innerHTML = `
                 <p>"Stay sharp and always carry a healing potion. Those dungeons can be tricky!"</p>
@@ -50,24 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("leave-bartender").addEventListener("click", resetTavern);
     });
 
+    // Reset to Tavern View
     function resetTavern() {
-        interactionArea.innerHTML = "";
-    }
-
-    function startDungeon() {
-        const dungeon = generateDungeon(); // Generate dungeon dynamically
         interactionArea.innerHTML = `
-            <h2>Dungeon Entrance</h2>
-            <p>You stand at the foreboding entrance of the dungeon. Darkness and mystery await inside.</p>
-            <button id="enter-dungeon">Enter the Dungeon</button>
+            <p>Welcome back to the tavern. What would you like to do?</p>
+            <button id="quest-board-button">Quest Board</button>
+            <button id="bartender-button">Talk to Bartender</button>
         `;
-
-        document.getElementById("enter-dungeon").addEventListener("click", () => {
-            playDungeon(dungeon);
-        });
     }
 
-    function playDungeon(dungeon) {
+    // Enter Dungeon
+    function enterDungeon(dungeon) {
         let currentRoomIndex = 0;
 
         function showRoom() {
@@ -80,9 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
 
             document.getElementById("explore-room").addEventListener("click", () => {
-                if (room.challenge === 'combat') {
+                if (room.challenge === "combat") {
                     startBattle(room);
-                } else if (room.challenge === 'skill check') {
+                } else if (room.challenge === "skill check") {
                     attemptSkillCheck(room);
                 }
             });
@@ -92,25 +90,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function startBattle(room) {
             interactionArea.innerHTML = `
-                <h2>Battle Begins!</h2>
-                <p>You encounter enemies in ${room.name}.</p>
+                <h2>Battle!</h2>
+                <p>Enemies appear in ${room.name}!</p>
                 <button id="fight">Fight</button>
             `;
 
             document.getElementById("fight").addEventListener("click", () => {
                 interactionArea.innerHTML = `
-                    <p>You fought bravely and cleared the room.</p>
-                    <button id="claim-loot">Claim Loot</button>
+                    <p>You defeated the enemies and found: ${room.loot}</p>
+                    <button id="next-room">Next Room</button>
                 `;
-
-                document.getElementById("claim-loot").addEventListener("click", () => {
-                    interactionArea.innerHTML = `
-                        <p>You found: ${room.loot}</p>
-                        <button id="next-room">Continue</button>
-                    `;
-
-                    document.getElementById("next-room").addEventListener("click", nextRoom);
-                });
+                document.getElementById("next-room").addEventListener("click", nextRoom);
             });
         }
 
@@ -118,24 +108,23 @@ document.addEventListener("DOMContentLoaded", () => {
             interactionArea.innerHTML = `
                 <h2>Skill Check</h2>
                 <p>${room.challengeDetails}</p>
-                <button id="roll-skill-check">Roll Skill Check</button>
+                <button id="roll-skill">Roll Skill</button>
             `;
 
-            document.getElementById("roll-skill-check").addEventListener("click", () => {
-                const roll = Math.floor(Math.random() * 20) + 1; // Roll a d20
+            document.getElementById("roll-skill").addEventListener("click", () => {
+                const roll = Math.floor(Math.random() * 20) + 1;
                 if (roll >= room.dc) {
                     interactionArea.innerHTML = `
-                        <p>Success! You navigated the challenge and found: ${room.loot}</p>
-                        <button id="next-room">Continue</button>
+                        <p>Success! You found: ${room.loot}</p>
+                        <button id="next-room">Next Room</button>
                     `;
                 } else {
                     interactionArea.innerHTML = `
-                        <p>Failure! You must find another way forward.</p>
+                        <p>Failure! You must try again or find another way.</p>
                         <button id="try-again">Try Again</button>
                     `;
                     document.getElementById("try-again").addEventListener("click", () => attemptSkillCheck(room));
                 }
-
                 document.getElementById("next-room").addEventListener("click", nextRoom);
             });
         }
@@ -147,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 interactionArea.innerHTML = `
                     <h2>Dungeon Complete!</h2>
-                    <p>You successfully completed the dungeon and return to the tavern victorious.</p>
+                    <p>You successfully cleared the dungeon and return to the tavern as a hero!</p>
                     <button id="return-to-tavern">Return to Tavern</button>
                 `;
                 document.getElementById("return-to-tavern").addEventListener("click", resetTavern);
