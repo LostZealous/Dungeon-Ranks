@@ -166,13 +166,6 @@ export const easyRooms = [
         description: "Colored lights dance across the walls, creating beautiful but dizzying patterns.",
         challenge: "skill check",
         challengeDetails: "Navigate through the shifting lights without getting disoriented. Careful timing and observation are key.",
-        loot: "Once
-
-        id: 19,
-        name: "Prismatic Room",
-        description: "Colored lights dance across the walls, creating beautiful but dizzying patterns.",
-        challenge: "skill check",
-        challengeDetails: "Navigate through the shifting lights without getting disoriented. Careful timing and observation are key.",
         loot: "Once you cross the room, you collect a glowing gemstone.",
         dc: 11
     },
