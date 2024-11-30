@@ -230,27 +230,7 @@ export const easyRooms = [
     }
 ];
 
-    export const mediumRooms = [
 
-
-
-
-        ];
-
-
-    export const hardRooms = [
-
-
-
-
-
-
-        ];
-
-    export const extremeRooms = [
-
-
-
-
-
-        ];
+export const mediumRooms = [];
+export const hardRooms = [];
+export const extremeRooms = [];
